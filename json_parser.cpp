@@ -246,13 +246,24 @@ namespace json
 
         consume_token();
 
-        // TODO: Allow + as a sign
-        std::string exponent_as_string = "E" + parse_sign();
+        std::string exponent_as_string = "E" + parse_exponent_sign();
         while (is_next_token_of_type(token_type::number))
         {
             exponent_as_string += consume_token().data;
         }
 
         return exponent_as_string;
+    }
+
+    std::string parser::parse_exponent_sign()
+    {
+        const auto& exponent_token = peek_token();
+        if (exponent_token.data == "-" || exponent_token.data == "+")
+        {
+            consume_token();
+            return exponent_token.data;
+        }
+
+        return "";
     }
 }
