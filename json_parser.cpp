@@ -210,10 +210,10 @@ namespace json
         }
 
         std::string integer_as_string;
-        while (is_next_token_of_type(token_type::number))
+        do
         {
-            integer_as_string += consume_token().data;
-        }
+            integer_as_string += consume_token_of_type(token_type::number).data;
+        } while (is_next_token_of_type(token_type::number));
 
         return integer_as_string;
     }
@@ -229,10 +229,10 @@ namespace json
 
         // TODO: Maybe abstract to parse_number_sequence
         std::string fractional_as_string = ".";
-        while (is_next_token_of_type(token_type::number))
+        do
         {
-            fractional_as_string += consume_token().data;
-        }
+            fractional_as_string += consume_token_of_type(token_type::number).data;
+        } while (is_next_token_of_type(token_type::number));
 
         return fractional_as_string;
     }
@@ -247,10 +247,10 @@ namespace json
         consume_token();
 
         std::string exponent_as_string = "E" + parse_exponent_sign();
-        while (is_next_token_of_type(token_type::number))
+        do
         {
-            exponent_as_string += consume_token().data;
-        }
+            exponent_as_string += consume_token_of_type(token_type::number).data;
+        } while (is_next_token_of_type(token_type::number));
 
         return exponent_as_string;
     }
