@@ -87,6 +87,7 @@ namespace json
         std::string parse_fractional();
         std::string parse_exponent();
         std::string parse_exponent_sign();
+        std::string parse_number_sequence();
 
         std::vector<token> m_tokens;
         size_t m_token_index;
