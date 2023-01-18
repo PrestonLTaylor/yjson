@@ -33,7 +33,7 @@ namespace json
         }
 
         const auto consumed = std::string(m_consumer.consume(1));
-        if (std::isdigit(consumed.at(0)))
+        if (std::isdigit(static_cast<unsigned char>(consumed.at(0))))
         {
             return token{ token_type::number, consumed };
         }
